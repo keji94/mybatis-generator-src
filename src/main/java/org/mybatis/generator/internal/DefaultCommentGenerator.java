@@ -333,8 +333,6 @@ public class DefaultCommentGenerator implements CommentGenerator {
         } else if ("updateByPrimaryKeyWithBLOBs".equals(methodName)) {
             sb.append(" 根据主键来更新符合条件的数据库记录,带大字段");
         }
-        sb.append(":");
-        sb.append(introspectedTable.getFullyQualifiedTable());
         method.addJavaDocLine(sb.toString());
 
         final List<Parameter> parameterList = method.getParameters();

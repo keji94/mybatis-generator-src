@@ -74,6 +74,18 @@ public class XmlElement extends Element {
         return attributes;
     }
 
+    public List<String> getCloumns() {
+        List<String> answer = new ArrayList<>();
+        XmlElement element = (XmlElement)elements.get(0);
+        List<Element> list = element.getElements();
+        for (Element element1 : list) {
+            XmlElement element2 = (XmlElement)element1;
+            List<Attribute> attributes = element2.getAttributes();
+            answer.add(attributes.get(0).getValue());
+        }
+        return answer;
+    }
+
     /**
      * Adds the attribute.
      *
@@ -152,7 +164,10 @@ public class XmlElement extends Element {
             sb.append("</"); //$NON-NLS-1$
             sb.append(name);
             sb.append('>');
-
+            if(indentLevel == 1) {
+                //每个insert/update/select之间插入一个空行
+                OutputUtilities.newLine(sb);
+            }
         } else {
             sb.append(" />"); //$NON-NLS-1$
         }
